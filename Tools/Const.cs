@@ -38,6 +38,12 @@ namespace VariabelBegreb.Tools
             this.RadixSpaceCharacter = RadixSpaceCharacter;
             this.ValidKeysArray = ValidKeysArray;
         }
+
+        public ConstRadixSystem()
+        {
+
+        }
+
     }
 
     public delegate string ConvertFromRadix10Int(int Radix10Number, char CharacterToInsert, int CharacterToInsertCouner);
@@ -69,6 +75,11 @@ namespace VariabelBegreb.Tools
             this.FunctionPointerToRadix10 = FunctionPointerToRadix10;
             this.FunctionPointerFromRadix10 = FunctionPointerFromRadix10;
         }
+
+        public ConstRadixSystemAndDelegates()
+        {
+            this.ConstRadixSystem_Object = new ConstRadixSystem();
+        }
     }
 
     public class ConstRadixSystemAndDelegatesExtended
@@ -81,6 +92,12 @@ namespace VariabelBegreb.Tools
         {
             this.ConstRadixSystemAndDelegates_Object = ConstRadixSystemAndDelegates_Object;
             this.RadixNumber_Object = RadixNumber_Object;
+        }
+
+        public ConstRadixSystemAndDelegatesExtended()
+        {
+            this.ConstRadixSystemAndDelegates_Object = new ConstRadixSystemAndDelegates();
+            this.RadixNumber_Object = new RadixNumber();
         }
     }
 
@@ -108,6 +125,20 @@ namespace VariabelBegreb.Tools
         public static readonly int TextBoxColumnSpan = 4;
         public static readonly int TextBoxWidth = 240;
         public static readonly int TextBoxHeight = 23;
+
+        public static readonly int MinRadixSystemValue = 2;
+        public static readonly int MaxRadixSystemValue = 32;
+        public static readonly int MinRadixSystemSpaces = 0;
+        public static readonly int MaxRadixSystemSpaces = 5;
+
+        public static readonly char[] RadixSystemSpaceCharacterArray =
+        {
+            ',',
+            '.',
+            ' ',
+            '/',
+            '\\'
+        };
 
         private static Key[] Radix2ValidKeysArray = { Key.D0, Key.D1 };
         private static Key[] Radix8ValidKeysArray = { Key.D0, Key.D1, Key.D2, Key.D3, Key.D4, Key.D5, Key.D6, Key.D7};
@@ -240,6 +271,19 @@ namespace VariabelBegreb.Tools
             new KeyToCharConverter(Value : 34, KeyValue : (int)Key.Y, KeyChar: 'Y'),
             new KeyToCharConverter(Value : 35, KeyValue : (int)Key.Z, KeyChar: 'Z')
         };
+
+        public static List<Key> MakeKeyArrayToRadixSystem(int RadixSystemValue)
+        {
+            int Counter;
+            List<Key> KeyList = new List<Key>();
+
+            for (Counter = 0; Counter < RadixSystemValue; Counter++)
+            {
+                KeyList.Add((Key)KeyToCharConverterArray[Counter].KeyValue);
+            }
+
+            return (KeyList);
+        }
 
         public static ConstRadixSystem FindRadixSystem(RadixNumber_ENUM RadixNumber)
         {

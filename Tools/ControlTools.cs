@@ -34,6 +34,26 @@ namespace VariabelBegreb.Tools
             ThisComboBox.SelectedItem = ThisComboBox.Items.GetItemAt(ComboBoxItemsCounter);
         }
 
+        public static void SetComboBoxSelectedItem(ComboBox ThisComboBox, char SelectedChar)
+        {
+            int ComboBoxItemsCounter = 0;
+            bool ComboBoxSelectedItemFound = false;
+
+            do
+            {
+                if ((char)ThisComboBox.Items[ComboBoxItemsCounter] == SelectedChar)
+                {
+                    ComboBoxSelectedItemFound = true;
+                }
+                else
+                {
+                    ComboBoxItemsCounter++;
+                }
+            } while ((ComboBoxItemsCounter < ThisComboBox.Items.Count) && (false == ComboBoxSelectedItemFound));
+
+            ThisComboBox.SelectedItem = ThisComboBox.Items.GetItemAt(ComboBoxItemsCounter);
+        }
+
         public static int CheckTextBoxesForInformation(List<TextBox> TextBoxes)
         {
             int Counter;

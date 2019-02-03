@@ -34,6 +34,7 @@ namespace VariabelBegreb
        
         private DispatcherTimer RadixSystemTimer = new DispatcherTimer();
         private static int Index_In_Number_System_List = -1;
+        private static int NumberDynamicRadixSystemsAdded = 0;
 
         public ObservableCollection<EquationSystemRow> EquationSystemRows { get; set; }
         public static char StartCoefficientChar = 'x';
@@ -1537,6 +1538,25 @@ namespace VariabelBegreb
 
             lblTalsystemer5.Content = NumberSystemString.Substring(0, StringLength);
             lblTalsystemer6.Content = NumberSystemString.Substring(StringLength + 1).Trim();
+
+            for (Counter = Const.MinRadixSystemValue; Counter <= Const.MaxRadixSystemValue; Counter++)
+            {
+                cmbNumberSystemRadix.Items.Add(Counter);
+            }
+            ControlTools.SetComboBoxSelectedItem(cmbNumberSystemRadix, Const.MinRadixSystemValue);
+
+            for (Counter = Const.MinRadixSystemSpaces; Counter <= Const.MaxRadixSystemSpaces; Counter++)
+            {
+                cmbNumberSystemSpaceCounter.Items.Add(Counter);
+            }
+            ControlTools.SetComboBoxSelectedItem(cmbNumberSystemSpaceCounter, Const.MinRadixSystemSpaces);
+
+            for (Counter = 0; Counter <= Const.RadixSystemSpaceCharacterArray.Length - 1; Counter++)
+            {
+                cmbNumberSystemSpaceCharacter.Items.Add(Const.RadixSystemSpaceCharacterArray[Counter]);
+            }
+            ControlTools.SetComboBoxSelectedItem(cmbNumberSystemSpaceCharacter, Const.RadixSystemSpaceCharacterArray[0]);
+
         }
 
         private void SetupNumberSystemTextBoxes()
@@ -1556,9 +1576,6 @@ namespace VariabelBegreb
                 ConstRadixSystemAndDelegatesExtended ConstRadixSystemAndDelegatesExtended_Object =
                     Const.RadixSystemDelegatesAndControlsExtendedArray[Counter];
                
-                //RowDefinition MyRow = new RowDefinition();
-                //MyRow.Height = new GridLength(30);
-                //GridNumberSystem.RowDefinitions.Add(MyRow);
                 ControlTools.InsertRowInGrid(GridNumberSystem);
 
                 ControlTools.InsertLabelInGrid(GridNumberSystem,
@@ -1729,6 +1746,45 @@ namespace VariabelBegreb
             RadixSystemTimer.Tick += RadixSystemTimer_Tick;
         }
 
+        private void btnMakeDynamicRadixSystem_Click(object sender, RoutedEventArgs e)
+        {
+            ConstRadixSystemAndDelegatesExtended ConstRadixSystemAndDelegatesExtended_Object =
+                new ConstRadixSystemAndDelegatesExtended();
+            ConstRadixSystemAndDelegates ConstRadixSystemAndDelegates_Object = new ConstRadixSystemAndDelegates();
+            ConstRadixSystemAndDelegates_Object.Label_Object_Name = "lblRadixDynamic" + NumberDynamicRadixSystemsAdded.ToString();
+            ConstRadixSystemAndDelegates_Object.Label_Object_Text = "Radix " + cmbNumberSystemRadix.SelectedValue.ToString() + " tal (" + cmbNumberSystemRadix.SelectedValue.ToString() + " tals system) : ";
+            ConstRadixSystemAndDelegates_Object.TextBox_Object_Name = "txtRadixDynamic" + NumberDynamicRadixSystemsAdded.ToString();
+            ConstRadixSystemAndDelegates_Object.TextBox_Object = null;
+            ConstRadixSystemAndDelegates_Object.FunctionPointerFromRadix10 = null;
+            ConstRadixSystemAndDelegates_Object.FunctionPointerToRadix10 = null;
+            ConstRadixSystemAndDelegates_Object.ConstRadixSystem_Object.ValidKeysArray = Const.MakeKeyArrayToRadixSystem((int)cmbNumberSystemRadix.SelectedValue).ToArray();
+            ConstRadixSystemAndDelegates_Object.ConstRadixSystem_Object.RadixNumber = (int)cmbNumberSystemRadix.SelectedValue;
+
+            ControlTools.InsertRowInGrid(GridNumberSystem);
+
+            ControlTools.InsertLabelInGrid(GridNumberSystem,
+                                           "lblRadixDynamic" + NumberDynamicRadixSystemsAdded.ToString(),
+                                           "Radix " + cmbNumberSystemRadix.SelectedValue.ToString() + " tal (" + cmbNumberSystemRadix.SelectedValue.ToString() + " tals system) : ",
+                                           GridNumberSystem.RowDefinitions.Count - 1,
+                                           Const.LabelColumnPosition,
+                                           Const.LabelColumnSpan);
+
+            ConstRadixSystemAndDelegatesExtended_Object.ConstRadixSystemAndDelegates_Object.TextBox_Object =
+                ControlTools.InsertTextBoxInGrid(GridNumberSystem,
+                "txtRadixDynamic" + NumberDynamicRadixSystemsAdded.ToString(),
+                GridNumberSystem.RowDefinitions.Count - 1,
+                Const.TextBoxColumnPosition,
+                Const.TextBoxColumnSpan,
+                Const.TextBoxWidth,
+                Const.TextBoxHeight,
+                txtCheckForValidNumberSystemKeyPressed,
+                txtNumberSystem_TextChanged);
+
+            ConstRadixSystemAndDelegatesList.Add(ConstRadixSystemAndDelegatesExtended_Object);
+
+            NumberDynamicRadixSystemsAdded++;
+        }
+
         #endregion
 
         /* General code below. */
@@ -1824,5 +1880,6 @@ namespace VariabelBegreb
         }
 
         #endregion
+        
     }
 }

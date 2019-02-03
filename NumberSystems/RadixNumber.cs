@@ -18,6 +18,11 @@ namespace VariabelBegreb.NumberSystems
             this.ConstRadixSystemAndDelegates_Object = ConstRadixSystemAndDelegates_Object;
         }
 
+        public RadixNumber()
+        {
+            this.ConstRadixSystemAndDelegates_Object = new ConstRadixSystemAndDelegates();
+        }
+
         public override bool IsKeyValid(Key ThisKey)
         {
             return (this.ConstRadixSystemAndDelegates_Object.ConstRadixSystem_Object.ValidKeysArray.Contains(ThisKey) ||

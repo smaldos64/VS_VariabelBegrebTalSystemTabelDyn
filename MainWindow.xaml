@@ -7,6 +7,7 @@
         xmlns:ap="clr-namespace:VariabelBegreb.Models"
         mc:Ignorable="d"
         Title="Matematik Program" Height="1024" Width="1280">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
     <StackPanel Name="ThisStack">
         <Grid>
             <TabControl HorizontalAlignment="Left" Height="1020" VerticalAlignment="Top" Width="1276" Name="MainTabControl" SelectionChanged="MainTabControl_SelectionChanged">
@@ -436,9 +437,10 @@
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
-                            <!--<RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>-->
-                        </Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
                         <Label Content="lbl1" HorizontalAlignment="Left" VerticalAlignment="Top" Name="lblTalsystemer1"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="10" />
                         <Label Content="lbl2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="lblTalsystemer2" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="10" />
                         <Label Content="lbl3" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="lblTalsystemer3" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="10" />
@@ -446,8 +448,18 @@
                         <Label Content="lbl5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="lblTalsystemer5" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="10" />
                         <Label Content="lbl6" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="lblTalsystemer6" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="10" />
 
-                        <Button Content="Clear" VerticalAlignment="Top" Name="btnCalculateNumberSystemsClear" Grid.Column="6" Grid.Row="8" HorizontalAlignment="Left" Width="75" Click="btnCalculateNumberSystemsClear_Click" />
-                        <Label Content="Statisk Oprettetde Talsystemer herunder" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="lblTalsystemer7" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="10" />
+                        <Label Content="Opret ny Talsystem" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="lblTalsystemer9" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="10" />
+
+                        <Label Content="Talsystem Radix : " HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="lblNumberSystemRadix" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="1" />
+                        <ComboBox Height="20" Name="cmbNumberSystemRadix" Width="50" Grid.Row="9" Grid.Column="1" ap:MoreXAMLProps.MarginLeft="10" />
+                        <Label Content="Talsystem Space Counter : " HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="lblNumberSystemSpaceCounter" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="2" />
+                        <ComboBox Height="20" Name="cmbNumberSystemSpaceCounter" Width="50" Grid.Row="9" Grid.Column="4" ap:MoreXAMLProps.MarginLeft="10" />
+                        <Label Content="Talsystem Space Karakter : " HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="lblNumberSystemSpaceCharacter" Grid.Column="5" Grid.Row="9" Grid.ColumnSpan="2" />
+                        <ComboBox Height="20" Name="cmbNumberSystemSpaceCharacter" Width="50" Grid.Row="9" Grid.Column="7" ap:MoreXAMLProps.MarginLeft="10" />
+                            <Button Content="Clear" VerticalAlignment="Top" Name="btnMakeDynamicRadixSystem" Grid.Column="8" Grid.Row="9" HorizontalAlignment="Left" Width="75" Click="btnMakeDynamicRadixSystem_Click" />
+
+                            <Button Content="Clear" VerticalAlignment="Top" Name="btnCalculateNumberSystemsClear" Grid.Column="6" Grid.Row="11" HorizontalAlignment="Left" Width="75" Click="btnCalculateNumberSystemsClear_Click" />
+                        <Label Content="Statisk Oprettetde Talsystemer herunder" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="lblTalsystemer7" Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="10" />
 
                         <!--<Label Content="Romertal : " HorizontalAlignment="Left" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Name="lblRomerNumber"/>
                         <TextBox Grid.ColumnSpan="4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="240" Grid.Column="2" Grid.Row="5" Name="txtRomerNumber" KeyDown="txtCheckForValidNumberSystemKeyPressed" TextChanged="txtNumberSystem_TextChanged" />
@@ -474,4 +486,5 @@
             </TabControl>
         </Grid>
     </StackPanel>
+    </ScrollViewer>
 </Window>
