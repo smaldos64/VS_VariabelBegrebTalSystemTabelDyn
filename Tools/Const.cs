@@ -20,32 +20,7 @@ namespace VariabelBegreb.Tools
         RADIX32_NUMBER,
         ROMER_NUMBER,
     }
-
-    //public class ConstRadixSystem
-    //{
-    //    public RadixNumber_ENUM RadixNumber { get; set; }
-    //    public int RadixValue { get; set; }
-    //    public int RadixSpaceCounter { get; set; }
-    //    public char RadixSpaceCharacter { get; set; }
-    //    public Key[] ValidKeysArray;
-
-    //    public ConstRadixSystem(RadixNumber_ENUM RadixNumber, int RadixValue, int RadixSpaceCounter, 
-    //                            char RadixSpaceCharacter, Key[] ValidKeysArray)
-    //    {
-    //        this.RadixNumber = RadixNumber;
-    //        this.RadixValue = RadixValue;
-    //        this.RadixSpaceCounter = RadixSpaceCounter;
-    //        this.RadixSpaceCharacter = RadixSpaceCharacter;
-    //        this.ValidKeysArray = ValidKeysArray;
-    //    }
-
-    //    public ConstRadixSystem()
-    //    {
-
-    //    }
-
-    //}
-
+        
     public class ConstRadixSystem
     {
         public int RadixValue { get; set; }
@@ -179,16 +154,6 @@ namespace VariabelBegreb.Tools
                                                        Key.G, Key.H, Key.I, Key.J, Key.K, Key.L, Key.M, Key.N,
                                                        Key.O, Key.P, Key.Q, Key.R, Key.S, Key.T, Key.U, Key.V};
 
-        //public static readonly ConstRadixSystem[] RadixSystemArray =
-        //{
-        //    new ConstRadixSystem(RadixNumber : RadixNumber_ENUM.BINARY_NUMBER, RadixValue : 2, RadixSpaceCounter : 4, RadixSpaceCharacter : ' ', ValidKeysArray : Radix2ValidKeysArray),
-        //    new ConstRadixSystem(RadixNumber : RadixNumber_ENUM.OCTAL_NUMBER, RadixValue : 8, RadixSpaceCounter : 3, RadixSpaceCharacter : ' ', ValidKeysArray : Radix8ValidKeysArray),
-        //    new ConstRadixSystem(RadixNumber : RadixNumber_ENUM.DECIMAL_NUMBER, RadixValue : 10, RadixSpaceCounter : 3, RadixSpaceCharacter : '.', ValidKeysArray : Radix10ValidKeysArray),
-        //    new ConstRadixSystem(RadixNumber : RadixNumber_ENUM.HEXADECIMAL_NUMBER, RadixValue : 16, RadixSpaceCounter : 4, RadixSpaceCharacter : ' ', ValidKeysArray : Radix16ValidKeysArray),
-        //    new ConstRadixSystem(RadixNumber : RadixNumber_ENUM.RADIX24_NUMBER, RadixValue : 24, RadixSpaceCounter : 4, RadixSpaceCharacter : ' ', ValidKeysArray : Radix24ValidKeysArray),
-        //    new ConstRadixSystem(RadixNumber : RadixNumber_ENUM.RADIX32_NUMBER, RadixValue : 32, RadixSpaceCounter : 4, RadixSpaceCharacter : ' ', ValidKeysArray : Radix32ValidKeysArray)
-        //};
-
         public static readonly ConstRadixSystem[] RadixSystemArray =
         {
             new ConstRadixSystem(RadixValue : 2, RadixSpaceCounter : 4, RadixSpaceCharacter : ' ', ValidKeysArray : Radix2ValidKeysArray),
@@ -201,54 +166,6 @@ namespace VariabelBegreb.Tools
 
         public static readonly ConstRadixSystemAndDelegates[] RadixSystemDelegatesAndControlsArray =
         {
-            //new ConstRadixSystemAndDelegates(ConstRadixSystem_Object : 
-            //                                 RadixSystemArray[(int)RadixNumber_ENUM.BINARY_NUMBER],
-            //                                 TextBox_Object : null,
-            //                                 TextBox_Object_Name : "txtBinaryNumber",
-            //                                 Label_Object_Name : "lblBinaryNumber",
-            //                                 Label_Object_Text : "Binært tal (2 tals system) : ",
-            //                                 FunctionPointerToRadix10 : null,
-            //                                 FunctionPointerFromRadix10 : null),
-            //new ConstRadixSystemAndDelegates(ConstRadixSystem_Object :
-            //                                 RadixSystemArray[(int)RadixNumber_ENUM.OCTAL_NUMBER],
-            //                                 TextBox_Object : null,
-            //                                 TextBox_Object_Name : "txtOctalNumber",
-            //                                 Label_Object_Name : "lblOctalNumber",
-            //                                 Label_Object_Text : "Oktalt tal (8 tals system) : ",
-            //                                 FunctionPointerToRadix10 : null,
-            //                                 FunctionPointerFromRadix10 : null),
-            //new ConstRadixSystemAndDelegates(ConstRadixSystem_Object :
-            //                                 RadixSystemArray[(int)RadixNumber_ENUM.DECIMAL_NUMBER],
-            //                                 TextBox_Object : null,
-            //                                 TextBox_Object_Name : "txtDecimalNumber",
-            //                                 Label_Object_Name : "lblDecimalNumber",
-            //                                 Label_Object_Text : "Decimaltal (10 tals system) : ",
-            //                                 FunctionPointerToRadix10 : MainWindow.ConvertToRadix10IntFromRadix10String,
-            //                                 FunctionPointerFromRadix10 : MainWindow.ConvertFromRadix10IntToRadix10String),
-            //new ConstRadixSystemAndDelegates(ConstRadixSystem_Object :
-            //                                 RadixSystemArray[(int)RadixNumber_ENUM.HEXADECIMAL_NUMBER],
-            //                                 TextBox_Object : null,
-            //                                 TextBox_Object_Name : "txtHexadecimalNumber",
-            //                                 Label_Object_Name : "lblHexadecimalNumber",
-            //                                 Label_Object_Text : "Hexadecimalt tal (16 tals system) : ",
-            //                                 FunctionPointerToRadix10 : null,
-            //                                 FunctionPointerFromRadix10 : null),
-            //new ConstRadixSystemAndDelegates(ConstRadixSystem_Object :
-            //                                 RadixSystemArray[(int)RadixNumber_ENUM.RADIX24_NUMBER],
-            //                                 TextBox_Object : null,
-            //                                 TextBox_Object_Name : "txtRadix24Number",
-            //                                 Label_Object_Name : "lblRadixNumber",
-            //                                 Label_Object_Text : "Radix 24 tal (24 tals system) : ",
-            //                                 FunctionPointerToRadix10 : null,
-            //                                 FunctionPointerFromRadix10 : null),
-            //new ConstRadixSystemAndDelegates(ConstRadixSystem_Object :
-            //                                 RadixSystemArray[(int)RadixNumber_ENUM.RADIX32_NUMBER],
-            //                                 TextBox_Object : null,
-            //                                 TextBox_Object_Name : "txtRadix32Number",
-            //                                 Label_Object_Name : "lblRadix32Number",
-            //                                 Label_Object_Text : "Radix 32 tal (32 tals system) : ",
-            //                                 FunctionPointerToRadix10 : null,
-            //                                 FunctionPointerFromRadix10 : null)
             new ConstRadixSystemAndDelegates(ConstRadixSystem_Object :
                                              RadixSystemArray[(int)RadixNumber_ENUM.BINARY_NUMBER],
                                              TextBox_Object : null,
@@ -367,25 +284,6 @@ namespace VariabelBegreb.Tools
 
             return (KeyList);
         }
-
-        //public static ConstRadixSystem FindRadixSystem(RadixNumber_ENUM RadixNumber)
-        //{
-        //    int RadixSystemCounter = 0;
-
-        //    do
-        //    {
-        //        if (RadixNumber == RadixSystemArray[RadixSystemCounter].RadixNumber)
-        //        {
-        //            return (RadixSystemArray[RadixSystemCounter]);
-        //        }
-        //        else
-        //        {
-        //            RadixSystemCounter++;
-        //        }
-        //    } while (RadixSystemCounter < RadixSystemArray.Length);
-
-        //    return (null);
-        //}
         #endregion
 
         #region General_Stuff
