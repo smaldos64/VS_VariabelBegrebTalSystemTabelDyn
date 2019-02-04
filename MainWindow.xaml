@@ -456,9 +456,9 @@
                         <ComboBox Height="20" Name="cmbNumberSystemSpaceCounter" Width="50" Grid.Row="9" Grid.Column="4" ap:MoreXAMLProps.MarginLeft="10" />
                         <Label Content="Talsystem Space Karakter : " HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="lblNumberSystemSpaceCharacter" Grid.Column="5" Grid.Row="9" Grid.ColumnSpan="2" />
                         <ComboBox Height="20" Name="cmbNumberSystemSpaceCharacter" Width="50" Grid.Row="9" Grid.Column="7" ap:MoreXAMLProps.MarginLeft="10" />
-                            <Button Content="Clear" VerticalAlignment="Top" Name="btnMakeDynamicRadixSystem" Grid.Column="8" Grid.Row="9" HorizontalAlignment="Left" Width="75" Click="btnMakeDynamicRadixSystem_Click" />
+                        <Button Content="Opret Nyt Talsystem" VerticalAlignment="Top" Name="btnMakeDynamicRadixSystem" Grid.Column="8" Grid.Row="9" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="150" Click="btnMakeDynamicRadixSystem_Click" />
 
-                            <Button Content="Clear" VerticalAlignment="Top" Name="btnCalculateNumberSystemsClear" Grid.Column="6" Grid.Row="11" HorizontalAlignment="Left" Width="75" Click="btnCalculateNumberSystemsClear_Click" />
+                        <Button Content="Clear" VerticalAlignment="Top" Name="btnCalculateNumberSystemsClear" Grid.Column="6" Grid.Row="11" HorizontalAlignment="Left" Width="75" Click="btnCalculateNumberSystemsClear_Click" />
                         <Label Content="Statisk Oprettetde Talsystemer herunder" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="lblTalsystemer7" Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="10" />
 
                         <!--<Label Content="Romertal : " HorizontalAlignment="Left" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Name="lblRomerNumber"/>

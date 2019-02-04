@@ -1541,7 +1541,10 @@ namespace VariabelBegreb
 
             for (Counter = Const.MinRadixSystemValue; Counter <= Const.MaxRadixSystemValue; Counter++)
             {
-                cmbNumberSystemRadix.Items.Add(Counter);
+                if (10 != Counter)
+                {
+                    cmbNumberSystemRadix.Items.Add(Counter);
+                }
             }
             ControlTools.SetComboBoxSelectedItem(cmbNumberSystemRadix, Const.MinRadixSystemValue);
 
@@ -1609,25 +1612,25 @@ namespace VariabelBegreb
                                            10);
         }
 
-        private int FindIndexInNumberSystemList(RadixNumber_ENUM RadixNumberEnum)
-        {
-            int RadixSystemCounter = 0;
+        //private int FindIndexInNumberSystemList(RadixNumber_ENUM RadixNumberEnum)
+        //{
+        //    int RadixSystemCounter = 0;
 
-            do
-            {
-                if (RadixNumberEnum == ConstRadixSystemAndDelegatesList[RadixSystemCounter].ConstRadixSystemAndDelegates_Object.ConstRadixSystem_Object.RadixNumber)
-                {
-                    return (RadixSystemCounter);
-                }
-                else
-                {
-                    RadixSystemCounter++;
-                }
-            } while (RadixSystemCounter < ConstRadixSystemAndDelegatesList.Count);
+        //    do
+        //    {
+        //        if (RadixNumberEnum == ConstRadixSystemAndDelegatesList[RadixSystemCounter].ConstRadixSystemAndDelegates_Object.ConstRadixSystem_Object.RadixNumber)
+        //        {
+        //            return (RadixSystemCounter);
+        //        }
+        //        else
+        //        {
+        //            RadixSystemCounter++;
+        //        }
+        //    } while (RadixSystemCounter < ConstRadixSystemAndDelegatesList.Count);
 
-            MessageBox.Show("Der er en fejl i din program konstruktion !!! Funktion : FindIndexInNumberSystemList (1)");
-            return (-1);
-        }
+        //    MessageBox.Show("Der er en fejl i din program konstruktion !!! Funktion : FindIndexInNumberSystemList (1)");
+        //    return (-1);
+        //}
 
         private int FindIndexInNumberSystemList(string TextBoxName)
         {
@@ -1697,22 +1700,43 @@ namespace VariabelBegreb
             }
         }
 
-        private void txtNumberSystem_TextChanged(object sender, TextChangedEventArgs e)
+        private void CalculateValueAndUpdateTextBoxes(int Current_Index_In_Number_System_List)
         {
             int Radix10Value;
 
+            if (Current_Index_In_Number_System_List >= 0)
+            {
+                if (ConstRadixSystemAndDelegatesList[Index_In_Number_System_List].ConstRadixSystemAndDelegates_Object.TextBox_Object.Text.Length > 0)
+                {
+                    Radix10Value = ConstRadixSystemAndDelegatesList[Index_In_Number_System_List].RadixNumber_Object.ConvertToRadix10(
+                      ConstRadixSystemAndDelegatesList[Index_In_Number_System_List].ConstRadixSystemAndDelegates_Object.TextBox_Object.Text);
+                    UpdateRadixNumbersTextBoxes(Radix10Value);
+                }
+                else
+                {
+                    ControlTools.ClearTextBoxes(TextBoxList);
+                }
+            }
+        }
+
+        private void txtNumberSystem_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //int Radix10Value;
+
             Index_In_Number_System_List = FindIndexInNumberSystemList(((System.Windows.FrameworkElement)sender).Name);
 
-            if (ConstRadixSystemAndDelegatesList[Index_In_Number_System_List].ConstRadixSystemAndDelegates_Object.TextBox_Object.Text.Length > 0)
-            {
-                Radix10Value = ConstRadixSystemAndDelegatesList[Index_In_Number_System_List].RadixNumber_Object.ConvertToRadix10(
-                  ConstRadixSystemAndDelegatesList[Index_In_Number_System_List].ConstRadixSystemAndDelegates_Object.TextBox_Object.Text);
-                UpdateRadixNumbersTextBoxes(Radix10Value);
-            }
-            else
-            {
-                ControlTools.ClearTextBoxes(TextBoxList);
-            }
+            CalculateValueAndUpdateTextBoxes(Index_In_Number_System_List);
+
+            //if (ConstRadixSystemAndDelegatesList[Index_In_Number_System_List].ConstRadixSystemAndDelegates_Object.TextBox_Object.Text.Length > 0)
+            //{
+            //    Radix10Value = ConstRadixSystemAndDelegatesList[Index_In_Number_System_List].RadixNumber_Object.ConvertToRadix10(
+            //      ConstRadixSystemAndDelegatesList[Index_In_Number_System_List].ConstRadixSystemAndDelegates_Object.TextBox_Object.Text);
+            //    UpdateRadixNumbersTextBoxes(Radix10Value);
+            //}
+            //else
+            //{
+            //    ControlTools.ClearTextBoxes(TextBoxList);
+            //}
         }
 
         private void txtCheckForValidNumberSystemKeyPressed(object sender, KeyEventArgs e)
@@ -1758,8 +1782,10 @@ namespace VariabelBegreb
             ConstRadixSystemAndDelegates_Object.FunctionPointerFromRadix10 = null;
             ConstRadixSystemAndDelegates_Object.FunctionPointerToRadix10 = null;
             ConstRadixSystemAndDelegates_Object.ConstRadixSystem_Object.ValidKeysArray = Const.MakeKeyArrayToRadixSystem((int)cmbNumberSystemRadix.SelectedValue).ToArray();
-            ConstRadixSystemAndDelegates_Object.ConstRadixSystem_Object.RadixNumber = (int)cmbNumberSystemRadix.SelectedValue;
-
+            ConstRadixSystemAndDelegates_Object.ConstRadixSystem_Object.RadixSpaceCharacter = (char)cmbNumberSystemSpaceCharacter.SelectedValue;
+            ConstRadixSystemAndDelegates_Object.ConstRadixSystem_Object.RadixSpaceCounter = (int)cmbNumberSystemSpaceCounter.SelectedValue;
+            ConstRadixSystemAndDelegates_Object.ConstRadixSystem_Object.RadixValue = (int)cmbNumberSystemRadix.SelectedValue;
+                                    
             ControlTools.InsertRowInGrid(GridNumberSystem);
 
             ControlTools.InsertLabelInGrid(GridNumberSystem,
@@ -1769,7 +1795,7 @@ namespace VariabelBegreb
                                            Const.LabelColumnPosition,
                                            Const.LabelColumnSpan);
 
-            ConstRadixSystemAndDelegatesExtended_Object.ConstRadixSystemAndDelegates_Object.TextBox_Object =
+            ConstRadixSystemAndDelegates_Object.TextBox_Object =
                 ControlTools.InsertTextBoxInGrid(GridNumberSystem,
                 "txtRadixDynamic" + NumberDynamicRadixSystemsAdded.ToString(),
                 GridNumberSystem.RowDefinitions.Count - 1,
@@ -1780,7 +1806,12 @@ namespace VariabelBegreb
                 txtCheckForValidNumberSystemKeyPressed,
                 txtNumberSystem_TextChanged);
 
+            ConstRadixSystemAndDelegatesExtended_Object.ConstRadixSystemAndDelegates_Object = ConstRadixSystemAndDelegates_Object;
+            ConstRadixSystemAndDelegatesExtended_Object.RadixNumber_Object = new RadixNumber(ConstRadixSystemAndDelegates_Object);
             ConstRadixSystemAndDelegatesList.Add(ConstRadixSystemAndDelegatesExtended_Object);
+            SetupNumberSystemTextBoxes();
+
+            CalculateValueAndUpdateTextBoxes(Index_In_Number_System_List);
 
             NumberDynamicRadixSystemsAdded++;
         }

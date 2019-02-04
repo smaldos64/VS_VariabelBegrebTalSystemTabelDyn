@@ -31,7 +31,7 @@ namespace VariabelBegreb.NumberSystems
 
                 if (0 != RadixSpaceCounter)
                 {
-                    if (0 == StringCounter % RadixSpaceCounter)
+                    if ( (0 == StringCounter % RadixSpaceCounter) && (NumberCalculated > 0) )
                     {
                         OutputString += RadixSeperationCharacter;
                     }
